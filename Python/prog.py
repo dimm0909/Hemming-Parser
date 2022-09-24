@@ -37,7 +37,7 @@ class Decoder:
                 error_flag = int(error_flag[:-1], 2)
 
                 if error_flag != 0:
-                    element = (element[:error_flag-1] + ('1' if element[error_flag-1] == '0' else '0') + element[error_flag:])
+                    element = (element[:error_flag] + ('1' if element[error_flag] == '0' else '0') + element[error_flag+1:])
 
                 for i in bites_for_decode:
                     decoded_item += element[i]
@@ -48,6 +48,7 @@ class Decoder:
                     print(item, element)
                     print(control_bites, decoded_item)
                     print(error_flag)
+                    print(int(decoded_item[:8], 2))
 
         except ValueError:
             print("\n Data for decode is not in the correct format! \n Process stopped \n")
